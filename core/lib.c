@@ -10,7 +10,7 @@ void init_LEDs();
 void led_GPIO(int, int);
 bool read_GPIO(int);
 
-bool init_socket(const char*, int,bool);
+bool init_socket(const char*, int,bool)
 
 {   
     /* User assignments */
