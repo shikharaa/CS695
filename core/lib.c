@@ -2,7 +2,8 @@
 #include <string.h>
 #include <stdbool.h>
 #include <stddef.h>
-#include "struct-device.h"
+//#include "struct-device.h"
+#include "lib.h"
 #include "config.h"
 #include "devices.h"
 

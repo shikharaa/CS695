@@ -1,3 +1,4 @@
+/*
 #ifndef STRUCT_DEVICE_H_
 #define STRUCT_DEVICE_H_
 #include <stdio.h>
@@ -11,11 +12,16 @@ struct device {
    const char *ssid_wifi;
    const char *pass_wifi;
    bool isEnable[12];
-   char d[12][10];    /* Sensors Data String */
-   const char *s_name[30];    /* Sensors Names */
+   char d[12][10];    */
+/* Sensors Data String *//*
+
+   const char *s_name[30];    */
+/* Sensors Names *//*
+
    bool isConnected[12];
    long interv;
    char json[1023];
 }; 
 
 #endif
+*/
