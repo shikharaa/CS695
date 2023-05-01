@@ -1,4 +1,3 @@
-/*
 #ifndef _HTTP_H_
 #define _HTTP_H_
 
@@ -9,4 +8,3 @@ bool init_socket(const char*, int,bool);
 size_t write_data(void *, size_t, size_t, void *);
 
 #endif
-*/
