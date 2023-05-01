@@ -3,9 +3,7 @@
 #include <stdbool.h>
 #include "config.h"
 #include "core/struct-device.h"
-
-void init_internal(bool);
-char* get_internal();
+#include "core/lib.h"
 
 
 struct device d;
