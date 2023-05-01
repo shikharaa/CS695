@@ -4,7 +4,11 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <curl/curl.h>
-#include "http.h"
+//#include "http.h"
+
+bool socket_sender(const char*, int, const char*, const char*, long);
+bool init_socket(const char*, int,bool);
+size_t write_data(void *, size_t, size_t, void *);
 
 CURL *hle;
 bool socket_sender(const char*, int, const char*, const char*, long);
