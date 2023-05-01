@@ -1,5 +1,5 @@
-#ifndef _HEADERS_
-#define _HEADERS_
+#ifndef _LIB_
+#define _LIB_
 #include <stdio.h>
 #include <stdbool.h>
 #include "lib.c"
