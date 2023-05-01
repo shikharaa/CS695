@@ -9,12 +9,12 @@ void led_blinks (int, int, int);
 void config(struct device *alpha);
 //void connectNetwork(struct device *, bool);
 void initPeripherals(long *); 
-void pnp_sensors();
-void getData(struct device *,long *);
-void generateJson(struct device *);
-void t_delay(long, long); 
-long take_time();
-bool init_socket(const char*, int,bool);
+
+bool init_socket(const char*, int,bool);/*void pnp_sensors();
+                                        void getData(struct device *,long *);
+                                        void generateJson(struct device *);
+                                        void t_delay(long, long);
+                                        long take_time();*/
 void init_LEDs();
 void led_GPIO(int, int);
 bool read_GPIO(int);
@@ -26,7 +26,6 @@ void udelay_basics (long);
 long take_time_basics();
 void print_sensors_state(void);
 void init_internal(bool);
-
 char* get_internal();
 
 #endif

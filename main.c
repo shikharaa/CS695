@@ -4,6 +4,8 @@
 #include "config.h"
 #include "core/struct-device.h"
 
+void init_internal(bool);
+char* get_internal();
 
 
 struct device d;
