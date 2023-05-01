@@ -9,7 +9,7 @@
 void init_LEDs();
 void led_GPIO(int, int);
 bool read_GPIO(int);
-void config(struct device *alpha);
+void config(struct device* alpha);
 
 bool init_socket(const char*, int,bool);
 
@@ -20,7 +20,6 @@ bool init_socket(const char*, int,bool);
         alpha->ssid_wifi = ssid_WiFi;
         alpha->pass_wifi = pass_WiFi;
     #endif
-
     alpha->isEnable[0] = isEnable_VoltageIntern;
     alpha->isEnable[1] = isEnable_TemperatureExtern;
     alpha->isEnable[2] = isEnable_Humidity;
