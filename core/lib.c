@@ -5,7 +5,6 @@
 #include "struct-device.h"
 #include "config.h"
 #include "devices.h"
-#include "lib.h"
 
 void config(struct device *alpha)
 {   
