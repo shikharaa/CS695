@@ -1,4 +1,3 @@
-/*
 #ifndef _BASICS_H_
 #define _BASICS_H_
 
@@ -12,4 +11,3 @@ long take_time_basics();
 void print_sensors_state(void);
 
 #endif
-*/
