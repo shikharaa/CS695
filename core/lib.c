@@ -9,7 +9,7 @@
 void init_LEDs();
 void led_GPIO(int, int);
 bool read_GPIO(int);
-void config(struct device *alpha)
+void config(struct device *);
 bool init_socket(const char*, int,bool);
 {   
     /* User assignments */
