@@ -19,6 +19,10 @@ char* str;
 int f_val;
 char val;
 
+void init_LEDs();
+void led_GPIO(int, int);
+bool read_GPIO(int);
+
 
 void init_LEDs()
 {
