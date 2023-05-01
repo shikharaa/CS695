@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-//#include "internal.h"
+#include "internal.h"
 
 char buff[400];
 char *str;
