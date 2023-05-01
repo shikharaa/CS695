@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include "config.h"
 #include "core/lib.h"
-#include "core/struct-device.h"
+//#include "core/struct-device.h"
 
 
 struct device d;

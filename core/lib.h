@@ -21,7 +21,6 @@ void init_LEDs();
 void led_GPIO(int, int);
 bool read_GPIO(int);
 void config(struct device *alpha);
-
 struct device {
    const char *id;
    const char *address;
@@ -36,4 +35,6 @@ struct device {
    long interv;
    char json[1023];
 };
+
 #endif
+
