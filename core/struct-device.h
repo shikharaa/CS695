@@ -5,13 +5,11 @@
 
 struct device {
    const char *id;
-
    const char *address;
    int address_port;
    const char *top;
    const char *ssid_wifi;
    const char *pass_wifi;
-   
    bool isEnable[12];
    char d[12][10];    /* Sensors Data String */
    const char *s_name[30];    /* Sensors Names */
