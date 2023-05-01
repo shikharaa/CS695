@@ -6,9 +6,7 @@
 #include "config.h"
 #include "devices.h"
 
-
-bool init_socket(const char*, int,bool)
-
+void config(struct device *alpha)
 {   
     /* User assignments */
     alpha->id = temp;

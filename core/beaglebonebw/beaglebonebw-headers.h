@@ -14,7 +14,4 @@
 #ifdef HTTP
 	#include "protocols/http/http.h"
 #endif
-
-
-
 #endif
