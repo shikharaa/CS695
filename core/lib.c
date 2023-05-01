@@ -6,6 +6,9 @@
 #include "config.h"
 #include "devices.h"
 
+void init_internal(bool);
+char* get_internal();
+
 void config(struct device *alpha)
 {   
     /* User assignments */

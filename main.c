@@ -5,7 +5,8 @@
 #include "core/struct-device.h"
 #include "core/lib.h"
 
-
+void init_internal(bool);
+char* get_internal();
 struct device d;
 
 long number, init_t;
