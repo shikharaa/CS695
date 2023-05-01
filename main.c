@@ -14,7 +14,7 @@ int main ()
 {	
     config(&d);			
     initPeripherals(&number);	
-    connectNetwork(&d, true);	
+    //connectNetwork(&d, true);
 
     while (1)
     {	

@@ -53,19 +53,19 @@ void led_blinks(int pin, int iterate, int unit_sec)	// LED Blink function-> led:
      }
 }
 
-void connectNetwork(struct device *alpha, bool first_t)
+/*void connectNetwork(struct device *alpha, bool first_t)
 {	
-	#ifdef MICROCONTROLLER			
+	#ifdef MICROCONTROLLER
 	if (first_t)
 	{				
-		while ( !connectAttempt(alpha->ssid_wifi, alpha->pass_wifi) )    /* Attempt to connect to the network via WiFi, in RaspberryPi only check connection to the network. */
+		while ( !connectAttempt(alpha->ssid_wifi, alpha->pass_wifi) )    *//* Attempt to connect to the network via WiFi, in RaspberryPi only check connection to the network. *//**//*
 		{
 			 led_blinks(0, 1, 600000);	// Blink in green GREEN - ERROR 0 (No WiFi connection);
 			 led_blinks(1, 1, 600000);	// Blink in green RED - ERROR 0 (No WiFi connection);
 		}
 	}
-	#endif
-	if ( !init_socket(alpha->address, alpha->address_port,first_t) )     /* Check Endpoint */
+	endif
+	if ( !init_socket(alpha->address, alpha->address_port,first_t) )     *//* Check Endpoint *//*
 	{	
 		udelay_basics ( 100000 );
 		led_blinks(1, 3, 70000);	// Blink in green RED - ERROR 1 (Bad connection with the endpoint);
@@ -73,7 +73,7 @@ void connectNetwork(struct device *alpha, bool first_t)
 			restart_basic();
 		#endif
 	}
-}
+}*/
 
 void pnp_sensors()
 {
