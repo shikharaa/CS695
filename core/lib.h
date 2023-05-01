@@ -25,6 +25,9 @@ void print_json(char*);
 void udelay_basics (long);
 long take_time_basics();
 void print_sensors_state(void);
+void init_internal(bool);
+
+char* get_internal();
 
 #endif
 
