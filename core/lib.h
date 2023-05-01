@@ -13,4 +13,8 @@ void generateJson(struct device *);
 void t_delay(long, long); 
 long take_time();
 bool init_socket(const char*, int,bool);
+void init_LEDs();
+void led_GPIO(int, int);
+bool read_GPIO(int);
+void config(struct device *alpha);
 #endif

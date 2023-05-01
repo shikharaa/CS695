@@ -1,15 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stddef.h>
 #include "struct-device.h"
 #include "config.h"
 #include "devices.h"
 
 
-void init_LEDs();
-void led_GPIO(int, int);
-bool read_GPIO(int);
-void config(struct device *alpha);
 bool init_socket(const char*, int,bool)
 
 {   
