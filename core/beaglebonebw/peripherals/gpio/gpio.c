@@ -7,7 +7,7 @@
 #include <simpleBBB_GPIO.h>
 #include <string.h>
 #include <fcntl.h>
-//#include "gpio.h"
+#include "gpio.h"
 
 #define GREEN_LED 60
 #define RED_LED 48
