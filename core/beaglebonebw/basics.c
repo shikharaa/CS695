@@ -6,7 +6,7 @@
 #include <time.h> 
 #include <unistd.h>
 #include "basics.h"
-#include "sensors/bme280/bme280.h"
+#include "data/bme280/bme280.h"
 
 char buff[100];
 char* str;
