@@ -1,3 +1,4 @@
+/*
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
@@ -62,3 +63,4 @@ int simpleBBB_GPIOread(int gpio) //     Read GPIO val      0 (Low)    ----     1
 
 	return (val - '0');
 }
+*/
