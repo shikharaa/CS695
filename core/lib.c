@@ -40,9 +40,6 @@ void initPeripherals(long* counter)
     #endif
 
     init_LEDs();
-    // init_i2c(); // Not necesary in BBB
-
-	init_internal(true);
     init_bme280(true);
 }
 
