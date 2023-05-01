@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS= -lcurl -lm -I. -DBBBW -DSHELLPRINT -DHTTP
-DEPS = core/beaglebonebw/basics.h  core/beaglebonebw/peripherals/gpio/gpio.c core/beaglebonebw/peripherals/apache/simpleBBB.c core/beaglebonebw/sensors/internal/internal.h core/beaglebonebw/sensors/bme280/bme280.h
-OBJ = core/beaglebonebw/basics.o  core/beaglebonebw/peripherals/gpio/gpio.o core/beaglebonebw/peripherals/apache/simpleBBB.o core/beaglebonebw/sensors/internal/internal.o core/beaglebonebw/sensors/bme280/bme280.o  main.o
+DEPS = core/beaglebonebw/basics.h  core/beaglebonebw/connectServer/gpio/gpio.c core/beaglebonebw/peripherals/apache/simpleBBB.c core/beaglebonebw/data/internal/internal.h core/beaglebonebw/data/bme280/bme280.h
+OBJ = core/beaglebonebw/basics.o  core/beaglebonebw/connectServer/gpio/gpio.o core/beaglebonebw/peripherals/apache/simpleBBB.o core/beaglebonebw/data/internal/internal.o core/beaglebonebw/data/bme280/bme280.o  main.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
