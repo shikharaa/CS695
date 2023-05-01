@@ -6,6 +6,9 @@
 #include "devices.h"
 
 
+void init_LEDs();
+void led_GPIO(int, int);
+bool read_GPIO(int); 
 void config(struct device *alpha)
 {   
     /* User assignments */
