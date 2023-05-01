@@ -1,4 +1,4 @@
-#ifndef RASPI_3_4_HEADERS_H
+/*#ifndef RASPI_3_4_HEADERS_H
 #define RASPI_3_4_HEADERS_H
 
 #include "basics.h"
@@ -10,8 +10,4 @@
 #ifdef MICROCONTROLLER
 	#include "wifi/wifi.h"
 #endif
-
-#ifdef HTTP
-	#include "protocols/http/http.h"
-#endif
-#endif
+#endif*/
