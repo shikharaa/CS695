@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include <math.h>
+//to communicate with sensor
 #include <simpleBBB_I2C.h>
 #include "bme280.h"
 
@@ -23,7 +24,7 @@ void print_sensors_state(void);
 
 char buff[100];
 char* str;
-
+//reads the chip ID of BME280 sensor
 bool check_bme280()
 {   
     id = (uint16_t)simpleBBB_I2CReadReg16(f_bme, BME280_REGISTER_CHIPID);
@@ -33,13 +34,12 @@ bool check_bme280()
 	return true;
 }
 
+//initializes BME280 sensor by setting oversampling rate and measurement code
 void init_bme280(bool ft)
 {   
 	if (ft)
 		f_bme = simpleBBB_I2CSetup(2, 0x76);
-
     readCalibrationData(f_bme, &cal);
-
     simpleBBB_I2CWriteReg8(f_bme, 0xf2, 0x01);   // humidity oversampling x 1
     simpleBBB_I2CWriteReg8(f_bme, 0xf4, 0x25);   // pressure and temperature oversampling x 1, mode normal	  
 }
@@ -52,14 +52,13 @@ void print_bme280()
 	printf("BME280 : Not detected (Temperat, Humidity, Pressure sensor)");
 }
 
+//reads raw temperature,humidity, and pressure values from sensor and uses calibration data to compensate for errors
 char* get_bme280(int index) 
 {
     readCalibrationData(f_bme, &cal);
     getRawData(f_bme, &raw);
     t_fin = getTemperatureCalibration(&cal, raw.temperature);
-   
     str = " ";
-  
     if (index == 0)
     {
 	sprintf(buff, "%.2f", compensateTemperature(t_fin));
@@ -81,7 +80,7 @@ char* get_bme280(int index)
     return 0;
 }
 
-
+//calculates calibrated temperature value based on raw senor data and calibration data
 int32_t getTemperatureCalibration(bme280_calib_data *cal, int32_t adc_T) 
 {
     int32_t a_var  = ((((adc_T>>3) - ((int32_t)cal->dig_T1 <<1))) * ((int32_t)cal->dig_T2)) >> 11;
@@ -91,6 +90,7 @@ int32_t getTemperatureCalibration(bme280_calib_data *cal, int32_t adc_T)
     return a_var + b_var;
 }
 
+//reads calibrartion data from BME280 sensor
 void readCalibrationData(int f_bme, bme280_calib_data *data) {
     data->dig_T1 = (uint16_t)simpleBBB_I2CReadReg16(f_bme, BME280_REGISTER_DIG_T1);
     data->dig_T2 = (int16_t)simpleBBB_I2CReadReg16(f_bme, BME280_REGISTER_DIG_T2);
@@ -114,23 +114,23 @@ void readCalibrationData(int f_bme, bme280_calib_data *data) {
     data->dig_H6 = (int8_t)simpleBBB_I2CReadReg8(f_bme, BME280_REGISTER_DIG_H6);
 }
 
+//converts raw data to a floating-point temperature value
 float compensateTemperature(int32_t t_fin) 
 {
     float Tem = (t_fin * 5 + 128) >> 8;
     return Tem/100;
 }
 
+//converts raw pressure data to floating point pressure value
 float compensatePressure(int32_t adc_P, bme280_calib_data *cal, int32_t t_fin) 
 {
     int64_t a_var, b_var, p;
-
     a_var = ((int64_t)t_fin) - 128000;
     b_var = a_var * a_var * (int64_t)cal->dig_P6;
     b_var = b_var + ((a_var*(int64_t)cal->dig_P5)<<17);
     b_var = b_var + (((int64_t)cal->dig_P4)<<35);
     a_var = ((a_var * a_var * (int64_t)cal->dig_P3)>>8) + ((a_var * (int64_t)cal->dig_P2)<<12);
     a_var = (((((int64_t)1)<<47)+a_var))*((int64_t)cal->dig_P1)>>33;
-
     if (a_var == 0) 
     {
     	return 0;  // avoid exception caused by division by zero
@@ -139,37 +139,32 @@ float compensatePressure(int32_t adc_P, bme280_calib_data *cal, int32_t t_fin)
     p = (((p<<31) - b_var)*3125) / a_var;
     a_var = (((int64_t)cal->dig_P9) * (p>>13) * (p>>13)) >> 25;
     b_var = (((int64_t)cal->dig_P8) * p) >> 19;
-
     p = ((p + a_var + b_var) >> 8) + (((int64_t)cal->dig_P7)<<4);
     return (float)p/256;
 }
 
-
+//converts raw humidity data to floating point humidity value
 float compensateHumidity(int32_t adc_H, bme280_calib_data *cal, int32_t t_fin) 
 {
     int32_t v_u32r;
-
     v_u32r = (t_fin - ((int32_t)76800));
-
     v_u32r = (((((adc_H << 14) - (((int32_t)cal->dig_H4) << 20) -
       (((int32_t)cal->dig_H5) * v_u32r)) + ((int32_t)16384)) >> 15) *
          (((((((v_u32r * ((int32_t)cal->dig_H6)) >> 10) *
         (((v_u32r * ((int32_t)cal->dig_H3)) >> 11) + ((int32_t)32768))) >> 10) +
       ((int32_t)2097152)) * ((int32_t)cal->dig_H2) + 8192) >> 14));
-
     v_u32r = (v_u32r - (((((v_u32r >> 15) * (v_u32r >> 15)) >> 7) *
            ((int32_t)cal->dig_H1)) >> 4));
-
     v_u32r = (v_u32r < 0) ? 0 : v_u32r;
     v_u32r = (v_u32r > 419430400) ? 419430400 : v_u32r;
     float h = (v_u32r>>12);
     return  h / 1024.0;
 }
 
+//uses I2C communication to read raw data from sensor and store it in structure
 void getRawData(int f_bme, bme280_raw_data *raw) 
 {
     simpleBBB_I2CWrite(f_bme, 0xf7);
-
     raw->pmsb = simpleBBB_I2CRead(f_bme);
     raw->plsb = simpleBBB_I2CRead(f_bme);
     raw->pxsb = simpleBBB_I2CRead(f_bme);

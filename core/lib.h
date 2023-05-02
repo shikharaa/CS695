@@ -10,7 +10,6 @@ void initPeripherals(long *);
 void pnp_sensors();
 void getData(struct device *,long *);
 void generateJson(struct device *);
-
 void t_delay(long, long);
 long take_time();
 void init_LEDs();

@@ -6,10 +6,10 @@ OBJ = core/cs695/basics.o  core/cs695/connectServer/gpio/gpio.o core/cs695/conne
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-BeagleboneB-HTTP: $(OBJ)
+BeagleboneB-APACHE: $(OBJ)
 	@echo "\nCompiling..."
 	$(CC) -o $@ $^ $(CFLAGS) 
-	@echo "\nCompiled Finished, now you can run your code with: '$ ./BeagleboneB-HTTP'\n"
+	@echo "\nCompiled Finished, now you can run your code with: '$ ./BeagleboneB-APACHE'\n"
 	@$ find . -name "*.o" -type f -delete
 
 help:

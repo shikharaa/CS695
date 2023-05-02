@@ -8,7 +8,7 @@
 void init_LEDs();
 void led_GPIO(int, int);
 bool read_GPIO(int);
-
+//this functions sets the device ID, sensor names,measurement interval fields and sensor enable flags based on type of device used
 void config(struct device *alpha)
 {
     /* User assignments */
@@ -22,27 +22,24 @@ void config(struct device *alpha)
     alpha->s_name[1] = "Temperature";
     alpha->s_name[2] = "Humidity";
     alpha->s_name[3] = "Pressure";
-
-
     alpha->interv = intv;
-
 }
 
+//initializes LED lights, system's internal temperature sensor and BME280 sensor
 void initPeripherals(long* counter)
 {
-    *counter = 0;		// Init counter
-
+    // Initialize counter
+    *counter = 0;	
     #ifdef SHELLPRINT
-    	welcome_msg();	// Printf in shell
+    // Printf in shell
+    	welcome_msg();	
     #endif
-
     init_LEDs();
-    // init_i2c(); // Not necesary in BBB
     init_bme280(true);
 }
 
-
-void led_blinks(int pin, int iterate, int unit_sec)	// LED Blink function-> led: 0 Green LED, 1 Red LED - iter: iterations quantity - usec: delay time in usec
+//LED Blink function-> led: 0 Green LED, 1 Red LED - iter: iterations quantity - usec: delay time in usec
+void led_blinks(int pin, int iterate, int unit_sec)	
 {
      int i;
      for (i=0;i<iterate;i++)
@@ -54,28 +51,24 @@ void led_blinks(int pin, int iterate, int unit_sec)	// LED Blink function-> led:
      }
 }
 
-
+//initializes BME280 sensor
 void pnp_sensors()
 {
     init_bme280(false);
 
 }
 
-
+//reads data from system's internal temperature sensor and BME280 sensor and stores it
 void getData(struct device *alpha, long *count)
 {
     int i;
     ++(*count);
-
     #ifdef SHELLPRINT	// Printf in shell
 	d_collect_msg( count );
 	print_sensors_state();
     #endif
-
-
     /* GET DATA INTERNAL TEMPERATURE */
     strcpy(alpha->d[0], get_internal());
-
     /* GET DATA BME280 */
     if (check_bme280())
     {
@@ -87,15 +80,12 @@ void getData(struct device *alpha, long *count)
 		for (i=0; i<3; i++)
 			strcpy(alpha->d[i+1], "0");
     }
-
-
 }
 
-
+//creates json object containing data read by system and device id stored
 void generateJson(struct device *alpha)
 {
     int i, beta;
-
     strcpy(alpha->json, "{\"Apache server\":[");
     beta = 0;
     strcat(alpha->json, "{\"sensor\":\"Internal\",\"data\":[");
@@ -114,7 +104,7 @@ void generateJson(struct device *alpha)
 	    beta++;
     }
     strcat(alpha->json, "]}");
-
+    //enabled - adds new json object to json string  not enabled - beta variable is incremented
     if (check_bme280())
     {
 		beta = 0;
@@ -135,18 +125,19 @@ void generateJson(struct device *alpha)
 		}
 		strcat(alpha->json, "]}");
     }
-
     #ifdef SHELLPRINT
-    	print_json(alpha->json);	// Printf in shell
+    //Printf in shell
+    	print_json(alpha->json);
     #endif
 }
 
-
 void t_delay(long desiredDelay, long actualDelay)
 {
-	if (actualDelay >= desiredDelay)		/* To prevent crashes */
+	if (actualDelay >= desiredDelay)
+    // To prevent crashes		
 		actualDelay = desiredDelay;
-    udelay_basics ( (desiredDelay - actualDelay) * 1000000 );	/* Time set by user  minus  loss time by operation */
+    // Time set by user  minus  loss time by operation 
+    udelay_basics ( (desiredDelay - actualDelay) * 1000000 );	
 }
 
 long take_time()

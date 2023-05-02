@@ -10,15 +10,13 @@
 
 char buff[100];
 char* str;
-
 void welcome_msg()
 {
     printf("\n					----  BeagleBone Black -- Apache Server  --");
-    
     #ifdef HTTP	
-    	printf("  HTTP  ----\n\n");	// Printf in shell
+    // Printf in shell
+    	printf("  HTTP  ----\n\n");	
     #endif
-   
 } 
 
 void d_collect_msg(long* m)
@@ -30,7 +28,6 @@ void print_sensors_state()
 {
 	printf ("   Sensors Detection:  ||	");
 	print_bme280();
-	
 }
 
 void print_json(char* jsn)
@@ -39,11 +36,13 @@ void print_json(char* jsn)
     printf("\n	Sending Data to Apache Server...\n");
 }
 
+//waits for a specified amount of time in microseconds
 void udelay_basics (long desiredDelay)
 {
     usleep(desiredDelay);
 }
 
+//returns current time in seconds
 long take_time_basics()
 {
     time_t tim;
