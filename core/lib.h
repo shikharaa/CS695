@@ -13,5 +13,7 @@ void generateJson(struct device *);
 
 void t_delay(long, long);
 long take_time();
+void init_LEDs();
+void led_GPIO(int, int);
 
 #endif
