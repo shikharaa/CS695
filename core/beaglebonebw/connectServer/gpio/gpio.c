@@ -7,6 +7,7 @@
 #include <simpleBBB_GPIO.h>
 #include <string.h>
 #include <fcntl.h>
+#include "gpio.h"
 
 
 #define GREEN_LED 60
@@ -19,9 +20,6 @@ char* str;
 int f_val;
 char val;
 
-void init_LEDs();
-void led_GPIO(int, int);
-bool read_GPIO(int);
 
 
 void init_LEDs()
