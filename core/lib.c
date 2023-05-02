@@ -12,7 +12,7 @@ bool read_GPIO(int);
 void config(struct device *alpha)
 {
     /* User assignments */
-    alpha->id = temp;
+    
     alpha->isEnable[0] = isEnable_VoltageIntern;
     alpha->isEnable[1] = isEnable_TemperatureExtern;
     alpha->isEnable[2] = isEnable_Humidity;
