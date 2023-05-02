@@ -136,8 +136,6 @@ void generateJson(struct device *alpha)
 		strcat(alpha->json, "]}");
     }
 
-	}");
-
     #ifdef SHELLPRINT
     	print_json(alpha->json);	// Printf in shell
     #endif
