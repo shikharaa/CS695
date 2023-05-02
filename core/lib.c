@@ -4,22 +4,12 @@
 #include "struct-device.h"
 #include "config.h"
 #include "devices.h"
-#include "data/internal/internal.h"
 
-void init_LEDs();
-void led_GPIO(int, int);
-bool read_GPIO(int);
 
 void config(struct device *alpha)
 {
     /* User assignments */
     alpha->id = temp;
-
-    #ifdef MICROCONTROLLER
-        alpha->ssid_wifi = ssid_WiFi;
-        alpha->pass_wifi = pass_WiFi;
-    #endif
-
     alpha->isEnable[0] = isEnable_VoltageIntern;
     alpha->isEnable[1] = isEnable_TemperatureExtern;
     alpha->isEnable[2] = isEnable_Humidity;
@@ -44,6 +34,9 @@ void initPeripherals(long* counter)
     #endif
 
     init_LEDs();
+    // init_i2c(); // Not necesary in BBB
+
+	init_internal(true);
     init_bme280(true);
 }
 
