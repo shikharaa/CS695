@@ -24,7 +24,6 @@ void welcome_msg()
 void d_collect_msg(long* m)
 {
     printf("---------------------------------------------------------------------------------------------------------------\n");
-    printf ("Data collect - %ld\n", *m);
 }
 
 void print_sensors_state()
