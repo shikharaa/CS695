@@ -9,16 +9,16 @@ char *str;
 float number;
 FILE *fptr;
 
-
-char* get_internal() 
+char* get_internal()
 {
     str = "";
+
     if ((fptr = fopen("/sys/bus/iio/devices/iio:device0/in_voltage1_raw","r")) == NULL)
 	return "NULL";
-    
+
     fscanf(fptr,"%f", &number);
     fclose(fptr);
-    sprintf(buff, "%.2f", (number / 1000) );	
+    sprintf(buff, "%.2f", (number / 1000) );
     str = buff;
-    return str;    
+    return str;
 }
