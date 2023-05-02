@@ -136,9 +136,9 @@ void generateJson(struct device *alpha)
 		strcat(alpha->json, "]}");
     }
 
-	strcat(alpha->json, "],\"device\": \"");
+
 	strcat(alpha->json, alpha->id);
-	strcat(alpha->json, "\",\"timestamp\": \"0\"}");
+	
 
     #ifdef SHELLPRINT
     	print_json(alpha->json);	// Printf in shell
