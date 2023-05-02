@@ -4,7 +4,7 @@
 #include "struct-device.h"
 #include "config.h"
 #include "devices.h"
-#include "core/data/internal/internal.h"
+#include "data/internal/internal.h"
 
 void init_LEDs();
 void led_GPIO(int, int);
