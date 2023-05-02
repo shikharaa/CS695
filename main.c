@@ -6,7 +6,7 @@
 #include "core/lib.h"
 
 
-
+char* get_internal();
 struct device d;
 
 long number, init_t;
