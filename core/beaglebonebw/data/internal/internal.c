@@ -8,7 +8,7 @@ char buff[400];
 char *str;
 float number;
 FILE *fptr;
-char* get_internal();
+
 
 char* get_internal() 
 {
