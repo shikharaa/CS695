@@ -7,11 +7,14 @@
 #include <simpleBBB_GPIO.h>
 #include <string.h>
 #include <fcntl.h>
-#include "gpio.h"
+
 
 #define GREEN_LED 60
 #define RED_LED 48
 
+void init_LEDs();
+void led_GPIO(int, int);
+bool read_GPIO(int);
 
 char buff[64];
 char aux[8];
